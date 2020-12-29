@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spot light</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="spotlight active">
+		<div class="spotlight-bar">
+			<input type="text">
+			<ul class="spotlight-suggestions">
+				<li class="active"> <a href="#">Dashboard</a> </li>
+				<li> <a href="#">N<mark>ot</mark>ificati<mark>on</mark></a> </li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="navbar-nav">
+		<li class="nav-item">
+			<a href="#" class="nav-link collapsed">Dashboard</a>
+		</li>
+	</div>
+	<spotlight-bar target=".navbar-nav a"></spotlight-bar>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
