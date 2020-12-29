@@ -1,4 +1,7 @@
-class Spotlight{
+class Spotlight extends HTMLElement{
+    constructor(){
+        super()
+    }
     connectedCallback () {
         this.classList.add('spotlight')
         this.innerHTML = /*html*/ `
@@ -36,7 +39,7 @@ class Spotlight{
     }
 
     shortcutHandler = (e) => {
-        if (e.key === 'k' && e.ctlKey === true) {
+        if (e.key === 'e' && e.ctlKey === true) {
             e.preventDefault()
             this.classList.add('active')
             this.input.value = ''
