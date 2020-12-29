@@ -35,7 +35,7 @@ class Spotlight extends HTMLElement{
     }
 
     disconnectedCallback () {
-        window.removeEventListener('keydown')
+        window.removeEventListener('keydown', this.shortcutHandler)
     }
 
     shortcutHandler = (e) => {
@@ -98,7 +98,7 @@ class Spotlight extends HTMLElement{
 
     inputShortcutHandler = (e) => {
         if (e.key === 'Escape') {
-            this.input.blur()
+            this.classList.remove('active')
         }else if (e.key === "ArrowDown") {
             const index = this.matchedItems.findIndex(e => e === this.activeItem)
             console.log(index)
