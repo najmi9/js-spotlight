@@ -7,7 +7,7 @@ class Spotlight extends HTMLElement{
         this.innerHTML = /*html*/ `
         <div class="spotlight active">
 		    <div class="spotlight-bar">
-			    <input type="text">
+			    <input type="text" placeholder="Where you want to go?">
 			    <ul class="spotlight-suggestions" hidden>
 				 
 			    </ul>
@@ -39,7 +39,7 @@ class Spotlight extends HTMLElement{
     }
 
     shortcutHandler = (e) => {
-        if (e.key === 'e' && e.ctlKey === true) {
+        if (e.key === 'e' && e.ctrlKey === true) {
             e.preventDefault()
             this.classList.add('active')
             this.input.value = ''
@@ -56,7 +56,7 @@ class Spotlight extends HTMLElement{
         const search = this.input.value.trim()
 
         if (search === "") {
-            this.temes.forEach(i => i.hide())
+            this.items.forEach(i => i.hide())
             this.matchedItems = []
             this.suggestions.setAttribute('hidden', 'hidden')
             return 
@@ -71,7 +71,7 @@ class Spotlight extends HTMLElement{
         regexp = new RegExp(regexp, 'i')
         this.matchedItems =  this.items.filter(i => i.match(regexp))
 
-        if (this.matchedItems > 0) {
+        if (this.matchedItems.length > 0) {
         	this.suggestions.removeAttribute('hidden')
             this.setActiveIndex(0)
         }else {
@@ -84,7 +84,7 @@ class Spotlight extends HTMLElement{
             this.activeItem.unselect()
         }
 
-        if (n > this.matchedItems.length) {
+        if (n >= this.matchedItems.length) {
             n = 0   
         }
 
@@ -92,7 +92,7 @@ class Spotlight extends HTMLElement{
             n = this.matchedItems.length - 1 
         }
 
-        this.matchedItems[0].select()
+        this.matchedItems[n].select()
         this.activeItem = this.matchedItems[n]
     }
 
@@ -101,6 +101,7 @@ class Spotlight extends HTMLElement{
             this.input.blur()
         }else if (e.key === "ArrowDown") {
             const index = this.matchedItems.findIndex(e => e === this.activeItem)
+            console.log(index)
             this.setActiveIndex(index+1)
         }else if (e.key === "ArrowUp") {
             const index = this.matchedItems.findIndex(e => e === this.activeItem)
@@ -160,7 +161,7 @@ class SpotlightItem
     }
 
     follow = () => {
-        window.location.href = href
+        window.location.href = this.href
     }
 }
 
